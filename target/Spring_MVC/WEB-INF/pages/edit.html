@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> New User </title>
+</head>
+
+<form th:method="post" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+
+    <table>
+
+        <tr>
+            <td><label for="id"> Id </label></td>
+            <td th:text="*{id}" id="id"> </td>
+
+        </tr>
+
+        <tr>
+            <td><label for="name"> name </label></td>
+            <td><input type="text" th:field="*{name}" id="name"/></td>
+
+        </tr>
+
+
+        <tr>
+            <td><label for="age"> age </label></td>
+            <td><input type="text" th:field="*{age}" id="age"/></td>
+
+        </tr>
+
+        <tr>
+            <td><label for="email"> email </label></td>
+            <td><input type="text" th:field="*{email}" id="email"/></td>
+
+        </tr>
+
+        <tr>
+            <td><label for="phonenumber"> phone-number </label></td>
+            <td><input type="number" th:field="*{phoneNumber}" id="phonenumber"/></td>
+
+        </tr>
+
+        <tr>
+            <input type="submit" th:value="Update"/>
+        </tr>
+
+    </table>
+
+</form>
+
+<body>
+<div>
+
+</div>
+</body>
+</html>
