@@ -29,10 +29,14 @@
                 <td th:text="${user.getPhoneNumber()}"></td>
 
 
+                <td>
+                    <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}" name="delete">
+                        <input type="submit" th:value="delete"/>
+                    </form>
+                </td>
 
-                <td> <a th:href="@{/{id}/delete(id=${user.getId()})}">Delete</a> </td>
+                <td><a th:href="@{/{id}/edit(id=${user.getId()})}"> Edit</a></td>
 
-                <td> <a th:href="@{/{id}/edit(id=${user.getId()})}"> Edit</a> </td>
 
             </tr>
 

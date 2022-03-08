@@ -6,7 +6,7 @@
     <title> New User </title>
 </head>
 
-<form th:method="post" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+<form th:method="patch" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
 
     <table>
 
@@ -19,6 +19,9 @@
         <tr>
             <td><label for="name"> name </label></td>
             <td><input type="text" th:field="*{name}" id="name"/></td>
+            <td>
+                <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Name error</div>
+            </td>
 
         </tr>
 
@@ -26,18 +29,29 @@
         <tr>
             <td><label for="age"> age </label></td>
             <td><input type="text" th:field="*{age}" id="age"/></td>
+            <td>
+                <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"> Age error</div>
+            </td>
 
         </tr>
 
         <tr>
             <td><label for="email"> email </label></td>
             <td><input type="text" th:field="*{email}" id="email"/></td>
+            <td>
+                <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> Email error</div>
+            </td>
 
         </tr>
 
         <tr>
             <td><label for="phonenumber"> phone-number </label></td>
-            <td><input type="number" th:field="*{phoneNumber}" id="phonenumber"/></td>
+            <td><input type="text" th:field="*{phoneNumber}" id="phonenumber"/></td>
+            <td>
+                <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">
+                    PhoneNumber error
+                </div>
+            </td>
 
         </tr>
 

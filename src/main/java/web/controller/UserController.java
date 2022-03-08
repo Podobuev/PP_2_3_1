@@ -3,12 +3,15 @@ package web.controller;
 
 import hibernate.model.User;
 import hibernate.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -31,13 +34,16 @@ public class UserController {
         return "newUser";
     }
 
-    @PostMapping(value = "/save")
-    public String saveCustomer(@ModelAttribute("user") User user) {
+    @PostMapping(value = "/")
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "newUser";
+        }
         userService.addUser(user);
         return "redirect:/";
     }
 
-    @GetMapping(value = "/{id}/delete")
+    @DeleteMapping(value = "/{id}")
     public String delete(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/";
@@ -50,8 +56,11 @@ public class UserController {
         return "edit";
     }
 
-    @PostMapping(value = "/{id}")
-    public String edit(@ModelAttribute("user") User user) {
+    @PatchMapping(value = "/{id}")
+    public String edit(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "edit";
+        }
         userService.edit(user);
         return "redirect:/";
     }
