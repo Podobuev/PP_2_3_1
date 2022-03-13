@@ -15,7 +15,7 @@ import java.util.List;
 public class UserDaoImp implements UserDao{
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Override
     public User getUser(Long id) {
@@ -42,7 +42,5 @@ public class UserDaoImp implements UserDao{
     @Override
     public void edit(User user) {
        entityManager.merge(user);
-        System.out.println(user);
-
     }
 }
